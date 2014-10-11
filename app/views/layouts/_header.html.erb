@@ -16,6 +16,7 @@
      
       <ul class="nav navbar-nav navbar-right">
       <li><%= link_to "<i class='fa fa-tasks'></i> Tasks".html_safe, tasks_path %></li>
+      <li><%= link_to "<i class='fa fa-area-chart'></i> Performance".html_safe, performance_path %></li>
         <% if current_user %>
         <li><%= link_to "Settings", edit_user_registration_path %></li>
          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>

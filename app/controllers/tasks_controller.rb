@@ -60,7 +60,7 @@ class TasksController < ApplicationController
   end
 
   def done
-    @task.update_attributes(state: "done")
+    @task.update_attributes(state: "done", done_at: Time.now)
     respond_to do |format|
       format.html {redirect_to tasks_path, notice: "Task Updated" }
     end
@@ -80,6 +80,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:content, :state)
+      params.require(:task).permit(:content, :state, :done_at)
     end
 end
