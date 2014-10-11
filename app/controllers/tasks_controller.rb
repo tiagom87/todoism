@@ -60,7 +60,7 @@ class TasksController < ApplicationController
   end
 
   def done
-    @task.update_attributes(state: "done", done_at: Time.now)
+    @task.update_attributes(state: "done")
     respond_to do |format|
       format.html {redirect_to tasks_path, notice: "Task Updated" }
     end

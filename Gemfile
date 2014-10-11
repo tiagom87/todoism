@@ -60,6 +60,3 @@ end
 group :production, :staging do
 	gem 'rails_12factor'
 end
-
-gem 'chart-js-rails'
-

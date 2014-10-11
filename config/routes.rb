@@ -7,9 +7,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-  get 'performance' => 'performances#index'
-
   devise_for :users
   root "pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
