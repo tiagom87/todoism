@@ -4,11 +4,14 @@ Rails.application.routes.draw do
       put :doing
       put :done
       put :todo
+      put :unarchive
     end
   end
 
   devise_for :users
   root "pages#home"
+
+  get 'archived' => 'tasks#archived'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

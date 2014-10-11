@@ -1,0 +1,28 @@
+<div class="row">
+<h1>Archvied Tasks</h1>
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Created</th>
+          <th>Description</th>
+          <th>Archived</th>
+          <th>State</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+      <% @archived_tasks.order('archived_at DESC').each do |task| %>
+        <tr>
+          <td><%= task.id %></td>
+          <td><%= time_ago_in_words(task.created_at) %> ago</td>
+          <td><%= task.content %></td>
+          <td><%= time_ago_in_words(task.archived_at) %> ago</td>
+          <td><%= task.state %></td>
+          <td><%= link_to "Bring Back", unarchive_task_path(task), method: :put %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>
