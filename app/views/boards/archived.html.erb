@@ -1,0 +1,32 @@
+<div class="row">
+  <h1>Archvied Boards</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Created</th>
+        <th>Description</th>
+        <th>Archived</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% @archived_boards.order('archived_at DESC').each do |board| %>
+      <tr>
+        <td><%= board.id %></td>
+        <td><%= time_ago_in_words(board.created_at) %> ago</td>
+        <td><%= board.name %></td>
+        <td><%= time_ago_in_words(board.archived_at) %> ago</td>
+        <td><%= link_to "Bring Back", unarchive_board_path(board), method: :put %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to "Back to Boards", boards_path, class: "pull-right" %>
+  </div>
+</div>

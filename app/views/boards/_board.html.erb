@@ -1,0 +1,14 @@
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title pull-left"><%= link_to board.name, board_path(board) %></h3>
+		<div class="pull-right">
+			<%= link_to "x", board_path(board), method: :delete, class: "delete_task", data: { confirm: "Are you sure?" } %>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="panel-body">
+		To Do: <%= board.tasks.where(state: "to_do").where(archived_at: nil).size %>
+		Doing: <%= board.tasks.where(state: "doing").where(archived_at: nil).size %>
+		Done: <%= board.tasks.where(state: "done").where(archived_at: nil).size %>
+	</div>
+</div>

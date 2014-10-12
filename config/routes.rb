@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :boards do
+    member do
+      put :unarchive
+    end
+    resources :tasks
+    get 'archived' => 'tasks#archived'
+  end
   resources :tasks do
     member do
       put :doing
@@ -11,7 +18,8 @@ Rails.application.routes.draw do
   devise_for :users
   root "pages#home"
 
-  get 'archived' => 'tasks#archived'
+  get 'archived' => 'boards#archived'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
