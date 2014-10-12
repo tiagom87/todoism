@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     member do
       put :unarchive
     end
+    resources :board_members
     resources :tasks
     get 'archived' => 'tasks#archived'
   end

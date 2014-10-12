@@ -10,5 +10,6 @@
 		To Do: <%= board.tasks.where(state: "to_do").where(archived_at: nil).size %>
 		Doing: <%= board.tasks.where(state: "doing").where(archived_at: nil).size %>
 		Done: <%= board.tasks.where(state: "done").where(archived_at: nil).size %>
+		Members: <%= board.board_members.size %>
 	</div>
 </div>

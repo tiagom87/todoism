@@ -5,6 +5,7 @@ class BoardsController < ApplicationController
 	def index
 		@board = Board.new
 			@boards = current_user.boards.where(archived_at: nil)
+			@participating_boards = Board.includes(:board_members).where(board_members: {user_id: current_user.id})
 			respond_to do |format|
 				format.html
 			end
@@ -14,11 +15,15 @@ class BoardsController < ApplicationController
 		@to_do = @board.tasks.where(state: "to_do").where(archived_at: nil)
 		@doing = @board.tasks.where(state: "doing").where(archived_at: nil)
 		@done = @board.tasks.where(state: "done").where(archived_at: nil)
-		@task = Task.new
+		@task = Task.new 
+		@board_members = User.all - @board.users - User.where(id: @board.user_id)
+		@board_member = BoardMember.new
+		@active_board_members = @board.board_members
 		respond_to do |format|
 			format.html
 		end
 	end
+
 
 	def create
 		@board = current_user.boards.new(board_params)
