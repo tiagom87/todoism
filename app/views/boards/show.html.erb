@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h2>To Do</h2>
     <hr>
     <% if @to_do.size < 1 %>
@@ -9,7 +9,7 @@
     <% end %>
     <%= render "tasks/form" %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h2>Doing</h2>
     <hr>
     <% if @doing.size < 1 %>
@@ -18,7 +18,7 @@
     <%= render @doing %>
     <% end %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <h2>Done</h2>
     <hr>
     <% if @done.size < 1 %>
@@ -27,45 +27,20 @@
     <%= render @done %>
     <% end %>
   </div>
-</div>
+  <div class="col-md-3">
+  <h2>Members</h2>
+  <hr>
+  <% if @board_members.any? %>
+  <%= render "board_members/form" %>
+  <% end %>
 
-<div class="row">
-<div class="col-md-12">
-<h1>Members</h1>
-<% if current_user == @board.user %>
-<h4>Invite</h4>
-<%= render "board_members/form" %>
-<% end %>
-<h4>Current</h4>
-
-<table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Invited</th>
-          <th>Name</th>
-          <% if current_user == @board.user %>
-          <th>Action</th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-
-      <% @active_board_members.each do |board_member| %>
-        <tr>
-          <td><%= time_ago_in_words(board_member.created_at) %> ago</td>
-          <td><%= board_member.user.full_name %></td>
-          <% if current_user == @board.user %>
-          <td><%= link_to "Remove", board_board_member_path(@board, board_member), method: :delete %></td>
-          <% end %>
-        </tr>
+   <% @active_board_members.each do |board_member| %>
+          <p><%= board_member.user.first_name %> <small>(<%= link_to "Remove", board_board_member_path(@board, board_member), method: :delete %>)</small></p>
       <% end %>
 
-      
-      </tbody>
-    </table>
+  </div>
+</div>
 
-</div>
-</div>
 
 <div class="row">
 <div class="col-md-12">
@@ -73,7 +48,3 @@
 </div>
 
 </div>
-
-   <script>
-    $(document).ready(function() { $("#member_id").select2(); });
-  </script>

@@ -61,6 +61,9 @@ gem "select2-rails"
   gem 'chosen-rails'
   gem 'compass-rails'
 
+  gem "auto_html"
+gem 'jquery-turbolinks'
+
 # Add Heroku Gem
 group :production, :staging do
 	gem 'rails_12factor'

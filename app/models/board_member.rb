@@ -8,7 +8,7 @@ class BoardMember < ActiveRecord::Base
 
 	def name
 		user = User.find(self.user_id)
-		user.full_name + " (" + user.email + ")"
+		user.full_name
 	end
 
 	def initials
