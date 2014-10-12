@@ -83,6 +83,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:content, :state, :done_at)
+      params.require(:task).permit(:content, :state, :done_at, :board_member_ids => [])
     end
 end

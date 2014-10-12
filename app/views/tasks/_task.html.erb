@@ -1,12 +1,7 @@
 <div class="panel panel-info">
 	<div class="panel-heading">
-		<h3 class="panel-title pull-left"><% if task.state == "done" %>
-			<strike>
-				Task
-			</strike>
-			<% else %>
-			Task
-			<% end %>
+		<h3 class="panel-title pull-left">
+			Task <% task.board_members.each do |member| %> <span class="label label-primary"><%= member.initials %></span><% end %>
 		</h3> 
 		<div class="pull-right">
 			<%= link_to "x", task_path(task), method: :delete, class: "delete_task", data: { confirm: "Are you sure?" } %>
